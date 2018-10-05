@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios'; 
 
 class App extends Component {
 
@@ -15,8 +16,8 @@ class App extends Component {
   initMap = () => {
     // eslint-disable-next-line
     var map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
+      center: {lat: 37.773972, lng: -122.431297},
+      zoom: 13
     })
   }
 
