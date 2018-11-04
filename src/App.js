@@ -45,11 +45,58 @@ class App extends Component {
       zoom: 13
     })
 
-    this.state.venues.map(myVenue => {
-      var marker = new window.google.maps.Marker ({
+    var infowindow = new window.google.maps.InfoWindow({
+    })
+
+  //  this.state.venues.map(myVenue => {
+
+    this.state.venues.map((index) => {
+      let position = {
+        lat: index.venue.location.lat,
+        lng: index.venue.location.lng,
+      };
+      let title = index.venue.name;
+      let marker = new window.google.maps.Marker({
+        map: map,
+        position: position,
+        title: title,
+        animation: window.google.maps.Animation.DROP,
+        id: index.venue.id,
+      });
+
+      // * Pushes markers to state after they have been created`
+    //  this.setState(() => this.state.markers.push(marker));
+
+      let content = `
+              <div class="infowindow">
+              <h1 class = "infoHeader">
+                ${index.venue.name}
+              </h1>
+              <p>
+                ${index.venue.location.formattedAddress[0]}
+              </p>
+              <p>
+                ${index.venue.location.formattedAddress[1]}
+              </p>
+              <p>
+              <a href="https://foursquare.com/v/${
+                index.venue.id
+              }" target="blank">More Info</a>
+              </p>
+              </div>`;
+
+    /*  var marker = new window.google.maps.Marker ({
         position: {lat: myVenue.venue.location.lat , lng: myVenue.venue.location.lng},
         map: map
+      }) */
+
+      marker.addListener('click', function() {
+
+        infowindow.setContent(content);
+
+        infowindow.open(map, marker);
       })
+
     })
   }
 
