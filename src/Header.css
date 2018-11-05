@@ -1,0 +1,15 @@
+#nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 7%;
+  max-height: 80px;
+  z-index: 1;
+}
+
+#navbarHeader {
+  color: var(--blue);
+  font-size: 2rem;
+}

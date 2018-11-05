@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import './Map.js';
+import Map from './Map.js';
+import Header from './Header.js';
 import axios from 'axios';
 
 class App extends Component {
@@ -103,13 +104,17 @@ class App extends Component {
 
   render() {
     return (
-      <main>
-        <div id='map'>
-        </div>
-      </main>
+      <div className="App">
+        <Header />
+        <main>
+          <div id='map'>
+          </div>
+        </main>
+      </div>
     )
   }
 }
+
 
   /*
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScDtRiY0-quySYzKD2w_tlAl3G4IpiLQ&callback=initMap"
