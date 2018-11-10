@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import Map from './Map.js';
-import Header from './Header.js';
+import Map from './Component/Map';
+import Header from './Component/Header';
+import SideBar from './Component/SideBar';
 import axios from 'axios';
 
 
 class App extends Component {
 
   state = {
-    venues: []
+    venues: [],
+    markers: [],
   }
 
   componentDidMount() {
@@ -42,6 +44,36 @@ class App extends Component {
       })
 
   }
+
+  handleVenueClick = (venueListItem) => {
+    const marker = this.state.markers;
+    let content = `
+      <div class="infowindow">
+      <h1 class = "infoHeader">
+        ${venueListItem.venue.venue.name}
+      </h1>
+      <p>
+        ${venueListItem.venue.venue.location.formattedAddress[0]}
+      </p>
+      <p>
+        ${venueListItem.venue.venue.location.formattedAddress[1]}
+      </p>
+      <p>
+        <a href='https://foursquare.com/v/${
+          venueListItem.venue.venue.id
+        }' target="blank">More Info</a>
+        </p>
+      </div>`;
+    marker.filter((marker) => {
+      if (marker.id === venueListItem.venue.venue.id) {
+        this.state.infowindow.setContent(content);
+        this.state.infowindow.open(this.initMap, marker);
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+      } else {
+        marker.setAnimation(null);
+      }
+    });
+  };
 
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById('map'), {
@@ -103,9 +135,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <main>
-          <div id='map'>
-          </div>
+        <main id="main">
+            <SideBar {...this.state} handleVenueClick={this.handleVenueClick} />
+            <Map {...this.state} />
         </main>
       </div>
     )
