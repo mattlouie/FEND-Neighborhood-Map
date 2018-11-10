@@ -100,6 +100,7 @@ class App extends Component {
         id: index.venue.id,
       });
 
+    this.setState(() => this.state.markers.push(marker))
 /* Add information that is displayed in infowindow */
 
       let content = `

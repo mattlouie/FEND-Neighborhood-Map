@@ -37,7 +37,6 @@ class SideBar extends Component {
       }
       return marker;
     });
-    this.props.updateSuperState({ markers: markers });
   };
 
   render() {
