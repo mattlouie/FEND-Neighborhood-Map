@@ -20,6 +20,7 @@ class App extends Component {
     window.initMap = this.initMap
   }
 
+/* Uses FourSquare to get search parameters */
   getVenues = () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?"
     const parameters = {
@@ -29,6 +30,7 @@ class App extends Component {
       near: "San Francisco, CA",
       v: "20180323"
     }
+/* Use Axios to request data */
     axios.get(endPoint + new URLSearchParams(parameters))
       .then(response => {
         this.setState({
@@ -42,7 +44,6 @@ class App extends Component {
   }
 
   initMap = () => {
-    // eslint-disable-next-line
     var map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.773972, lng: -122.431297},
       zoom: 13
@@ -51,7 +52,7 @@ class App extends Component {
     var infowindow = new window.google.maps.InfoWindow({
     })
 
-  //  this.state.venues.map(myVenue => {
+/* Loops over venue items and makes markers for them */
 
     this.state.venues.map((index) => {
       let position = {
@@ -67,8 +68,7 @@ class App extends Component {
         id: index.venue.id,
       });
 
-      // * Pushes markers to state after they have been created`
-    //  this.setState(() => this.state.markers.push(marker));
+/* Add information that is displayed in infowindow */
 
       let content = `
               <div class="infowindow">
@@ -88,10 +88,6 @@ class App extends Component {
               </p>
               </div>`;
 
-    /*  var marker = new window.google.maps.Marker ({
-        position: {lat: myVenue.venue.location.lat , lng: myVenue.venue.location.lng},
-        map: map
-      }) */
 
       marker.addListener('click', function() {
 
@@ -117,10 +113,6 @@ class App extends Component {
 }
 
 
-  /*
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScDtRiY0-quySYzKD2w_tlAl3G4IpiLQ&callback=initMap"
-  async defer></script>
-  */
 
 function loadScript(url) {
   var index = window.document.getElementsByTagName("script")[0]
