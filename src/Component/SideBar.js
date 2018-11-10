@@ -45,7 +45,7 @@ class SideBar extends Component {
       <aside id="sidebarContainer">
         <h1 id="sidebarHeader">
         </h1>
-        <label htmlFor="filter">Search Venue Listings</label>
+        <label class="searchHeader" htmlFor="filter">Search Venue Listings</label>
         <input
           id="filter"
           type="search"

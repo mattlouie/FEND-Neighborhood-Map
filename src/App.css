@@ -79,6 +79,11 @@ html, body {
   background: black;
 }
 
+.searchHeader {
+  padding-bottom: 5%;
+  font-weight: bold;
+}
+
 .venueItem {
   display: flex;
   align-items: center;
@@ -87,7 +92,6 @@ html, body {
   margin-top: 0.2rem;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   text-transform: capitalize;
-  background-color: var(--blue);
   min-width: 95%;
   border-radius: 5px;
   height: 35px;
@@ -95,7 +99,6 @@ html, body {
 }
 
 .venueItem:hover {
-  color: var(--pink);
   font-weight: bold;
   cursor: pointer;
   text-shadow: 1px 1px 5px rgb(68, 67, 67);
@@ -136,7 +139,7 @@ input {
 #navbarHeader {
   font-size: 2rem;
   color: white;
-  padding-top: 1%;
+  padding-top: 0.5%;
 }
 
 #menu {
